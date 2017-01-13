@@ -15,6 +15,12 @@ class SCIClient {
   const WEB_TIMEOUT = 6;
   const BUFFER_SIZE = 512;
 
+  /**
+  * SCI PHP client version number.
+  * @var string
+  */
+  public $version = "1.0.0";
+
   private $licenceKey;
   private $serverHostname;
   private $serverPort;
