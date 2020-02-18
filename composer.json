@@ -1,0 +1,6 @@
+{
+  "name": "sitemorse/sci-php",
+  "autoload": {
+    "psr-0": { "SCIClient": "" }
+  }
+}
