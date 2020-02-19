@@ -1,5 +1,8 @@
 {
   "name": "sitemorse/sci-php",
+  "description": "PHP client implementation the Sitemorse SCI protocol.",
+  "homepage": "https://Sitemorse.com",
+  "license": "MIT",
   "autoload": {
     "psr-0": { "SCIClient": "" }
   }
