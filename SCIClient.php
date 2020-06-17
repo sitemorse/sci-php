@@ -19,7 +19,7 @@ class SCIClient {
   * SCI PHP client version number.
   * @var string
   */
-  public $version = "1.0.0";
+  public $version = "1.1.0";
 
   private $licenceKey;
   private $serverHostname;
@@ -120,7 +120,7 @@ class SCIClient {
     return $sock;
   }
 
-  private function sendArgs($url, $hostNames, $view, $sock) {
+  private function sendArgs($url, $hostNames, $view, $sock, $pagesList, $user) {
     if (!in_array(parse_url($url, PHP_URL_HOST), $hostNames))
       array_push($hostNames, parse_url($url, PHP_URL_HOST));
     $this->hostNames = $hostNames;
@@ -131,7 +131,9 @@ class SCIClient {
       "extendedResponse" => $this->extendedReponse,
       "screenshot" => true,
       "testContent" => true,
-      "cookies" => $this->cookies
+      "cookies" => $this->cookies,
+      "pagesList" => $pagesList,
+      "user" => $user,
     ));
     $this->fsendall($sock, strlen($jsonreq) . self::CRLF . $jsonreq .
       self::CRLF);
@@ -143,10 +145,10 @@ class SCIClient {
       throw new Exception($line);
   }
 
-  function performTest($url, $hostNames=[], $view="snapshot-page") {
+  function performTest($url, $hostNames=[], $view="snapshot-page", $pagesList='', $user='') {
     try {
       $sock = $this->establishConnection();
-      $this->sendArgs($url, $hostNames, $view, $sock);
+      $this->sendArgs($url, $hostNames, $view, $sock, $pagesList, $user);
       $results = $this->ProxyRequests($sock, $this->hostNames);
     } catch(Exception $e) {
       throw new Exception($e);
