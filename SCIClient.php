@@ -2,7 +2,7 @@
 class SCIClient {
 
   /* PHP implementation of an SCI protocol client.
-     v1.0 (c) Sitemorse Ltd 2011
+     v1.0 (c) Sitemorse (UK Sales) Ltd 2021
   */
 
   const SCI_DEFAULT_SERVER = "sci.sitemorse.com";
@@ -19,7 +19,7 @@ class SCIClient {
   * SCI PHP client version number.
   * @var string
   */
-  public $version = "1.1.0";
+  public $version = "1.1.1";
 
   private $licenceKey;
   private $serverHostname;
@@ -62,8 +62,8 @@ class SCIClient {
     $this->proxyPort = null;
     if (array_key_exists("proxyPort", $args))
       $this->proxyPort = $args["proxyPort"];
-    //if (array_key_exists("testContent", $args))
-    //  $this->proxyHostname = $args["testContent"];
+    if (array_key_exists("testContent", $args))
+      $this->proxyHostname = $args["testContent"];
   }
 
   function establishConnection() {
@@ -130,7 +130,6 @@ class SCIClient {
       "view" => $view,
       "extendedResponse" => $this->extendedReponse,
       "screenshot" => true,
-      "testContent" => true,
       "cookies" => $this->cookies,
       "pagesList" => $pagesList,
       "user" => $user,
