@@ -63,7 +63,7 @@ class SCIClient {
     if (array_key_exists("proxyPort", $args))
       $this->proxyPort = $args["proxyPort"];
     if (array_key_exists("testContent", $args))
-      $this->proxyHostname = $args["testContent"];
+      $this->testContent = $args["testContent"];
   }
 
   function establishConnection() {
